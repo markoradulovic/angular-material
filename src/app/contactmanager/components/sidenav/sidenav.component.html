@@ -8,11 +8,13 @@
     <mat-toolbar color="primary">
       <span>Contacts</span>
     </mat-toolbar>
-    <mat-list role="list">
-      <mat-list-item role="listitem">Item 1</mat-list-item>
-      <mat-list-item role="listitem">Item 2</mat-list-item>
-      <mat-list-item role="listitem">Item 3</mat-list-item>
-    </mat-list></mat-sidenav
+    <mat-nav-list *ngIf="users$ | async as users">
+      <mat-list-item *ngFor="let user of users">
+        <a matLine [routerLink]="['/contactmanager', user.id]"
+          ><mat-icon>face</mat-icon>{{ user?.name }}</a
+        >
+      </mat-list-item>
+    </mat-nav-list></mat-sidenav
   >
   <mat-sidenav-content class="app-sidenav-content"
     ><app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
