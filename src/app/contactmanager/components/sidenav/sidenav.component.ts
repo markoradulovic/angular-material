@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 import { IUser } from '../../models/user';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Direction } from '@angular/cdk/bidi';
 
 @Component({
   selector: 'app-sidenav',
@@ -19,6 +20,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class SidenavComponent implements OnInit {
   isScreenSmall = false;
+  isDarkTheme = false;
+  dir: Direction = 'ltr';
 
   users$: Observable<IUser[]> | undefined;
 
@@ -49,5 +52,13 @@ export class SidenavComponent implements OnInit {
         this.sidenav.close();
       }
     });
+  }
+
+  toggleTheme(): void {
+    this.isDarkTheme = !this.isDarkTheme;
+  }
+
+  toggleDir(): void {
+    this.dir = this.dir == 'ltr' ? 'rtl' : 'ltr';
   }
 }
